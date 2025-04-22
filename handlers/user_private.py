@@ -39,8 +39,8 @@ async def questions(message: types.Message):
 async def cart(message: types.Message):
     await (message.answer("вот корзина"))
 
-@user_router.message(F.text.lower().contains("цен")|F.text.lower().endswith("?"))
-async def echo(message: types.Message):
-    await (message.answer("бот в разработке"))
+# @user_router.message(F.text.lower().contains("цен")|F.text.lower().endswith("?"))
+# async def echo(message: types.Message):
+#     await (message.answer("бот в разработке"))
     # user_text=message.text
     # await (message.answer(user_text))
