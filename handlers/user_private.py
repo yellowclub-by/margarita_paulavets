@@ -1,5 +1,6 @@
 from aiogram import types, Router, F
 from aiogram.filters import CommandStart, Command
+from keyboards import reply
 
 
 user_router=Router()
@@ -7,12 +8,12 @@ user_router=Router()
 
 @user_router.message(CommandStart())
 async def start(message: types.Message):
-    await (message.answer("привет"))
+    await (message.answer("привет", reply_markup=reply.main_kb))
 
-@user_router.message(F.text.lower().contains("каталог"))
+@user_router.message(F.text.lower()==("каталог"))
 @user_router.message(Command("catalog"))
 async def catalog(message: types.Message):
-    await (message.answer("вы открыли каталог"))
+    await (message.answer("вы открыли каталог", reply_markup=reply.catalog_kb))
 
 @user_router.message(F.text.lower().contains("контакт"))
 @user_router.message(Command("contacts"))
@@ -44,3 +45,7 @@ async def cart(message: types.Message):
 #     await (message.answer("бот в разработке"))
     # user_text=message.text
     # await (message.answer(user_text))
+
+@user_router.message(F.text.lower() == "назад")
+async def back_menu(message: types.Message):
+    await (message.answer("главное меню", ReplyMarkup=reply.main_kb))
