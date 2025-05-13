@@ -1,6 +1,6 @@
 from aiogram import types, Router, F
 from aiogram.filters import CommandStart, Command
-from keyboards import reply
+from keyboards import reply, inline
 
 
 user_router=Router()
@@ -31,9 +31,21 @@ async def about_us(message: types.Message):
 async def stories(message: types.Message):
     await (message.answer("вот наши истории успеха"))
 
-@user_router.message(F.text.lower().contains("часто")|F.text.lower().endswith("вопрос"))
+@user_router.message(F.text.lower().contains("вопрос"))
 async def questions(message: types.Message):
-    await (message.answer("вот часто задаваемые вопросы"))
+    await message.answer("вот часто задаваемые вопросы", reply_markup=inline.questions_kb())
+
+@user_router.callback_query(F.data.startswith("question"))
+async def answers(callback: types.callback_query):
+    query=callback.data.split("_")[1]
+    if query=="1":
+        await callback.message.answer("1")
+    elif query=="2":
+        await callback.message.answer("2")
+    elif query=="3":
+        await callback.message.answer("3")
+
+    await callback.answer("ответ отправлен")
 
 @user_router.message(F.text.lower().contains("корзин"))
 @user_router.message(Command("cart"))
@@ -48,4 +60,4 @@ async def cart(message: types.Message):
 
 @user_router.message(F.text.lower() == "назад")
 async def back_menu(message: types.Message):
-    await (message.answer("главное меню", ReplyMarkup=reply.main_kb))
+    await (message.answer("главное меню", reply_markup=reply.main_kb))
