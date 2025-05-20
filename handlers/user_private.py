@@ -23,7 +23,7 @@ async def contacts(message: types.Message):
 @user_router.message(F.text.lower().contains("инф"))
 @user_router.message(Command("about_us"))
 async def about_us(message: types.Message):
-    await (message.answer("вот информация о нас"))
+    await (message.answer("вот информация о нас", reply_markup=inline.links_kb))
 
 
 
@@ -50,7 +50,7 @@ async def answers(callback: types.callback_query):
 @user_router.message(F.text.lower().contains("корзин"))
 @user_router.message(Command("cart"))
 async def cart(message: types.Message):
-    await (message.answer("вот корзина"))
+    await (message.answer("<b>вот корзина</b>"))
 
 # @user_router.message(F.text.lower().contains("цен")|F.text.lower().endswith("?"))
 # async def echo(message: types.Message):
