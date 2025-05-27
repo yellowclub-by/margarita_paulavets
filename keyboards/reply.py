@@ -11,9 +11,9 @@ main_kb = ReplyKeyboardMarkup(
 )
 catalog_kb = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text="1-й продукт"), KeyboardButton(text="2-й продукт")],
-        [KeyboardButton(text="3-й продукт"), KeyboardButton(text="4-й продукт")],
-        [KeyboardButton(text="5-й продукт"), KeyboardButton(text="6-й продукт")],
+        [KeyboardButton(text="ColonWell"), KeyboardButton(text="ColonWell Active")],
+        [KeyboardButton(text="ColonWell Prolentan"), KeyboardButton(text="ColonWell Detox")],
+        [KeyboardButton(text="TriCollagen Peptide"), KeyboardButton(text="TriCollagen MicroHyaluron")],
         [back_btn]
     ],
     resize_keyboard=True,
